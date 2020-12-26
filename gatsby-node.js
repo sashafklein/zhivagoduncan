@@ -1,35 +1,43 @@
 const path = require(`path`)
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type contentfulPortfolioDescriptionTextNode implements Node {
-      description: String
-    }
-    type ContentfulPortfolio implements Node {
-      description: contentfulPortfolioDescriptionTextNode
-      gallery: [ContentfulAsset]
-      id: ID!
-      name: String!
-      related: [ContentfulPortfolio]
-      slug: String!
-      summary: String!
-      thumbnail: ContentfulAsset
-      url: String
-    }
-  `
-  createTypes(typeDefs)
-}
+// exports.createSchemaCustomization = ({ actions }) => {
+//   const { createTypes } = actions
+//   const typeDefs = `
+//     type contentfulPortfolioDescriptionTextNode implements Node {
+//       description: String
+//     }
+//     type ContentfulPortfolio implements Node {
+//       description: contentfulPortfolioDescriptionTextNode
+//       gallery: [ContentfulAsset]
+//       id: ID!
+//       name: String!
+//       related: [ContentfulPortfolio]
+//       slug: String!
+//       summary: String!
+//       thumbnail: ContentfulAsset
+//       url: String
+//     }
+//   `
+//   createTypes(typeDefs)
+// }
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
+  console.log(`
+
+  ----------------------
+  --- CREATING PAGES ---
+  ----------------------
+
+  `)
+
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        portfolio: allContentfulPortfolio {
+        works: allContentfulWork {
           nodes {
-            slug
+            id
           }
         }
       }
@@ -38,13 +46,16 @@ exports.createPages = ({ graphql, actions }) => {
         reject(errors)
       }
 
-      if (data && data.portfolio) {
-        const component = path.resolve("./src/templates/portfolio-item.jsx")
-        data.portfolio.nodes.map(({ slug }) => {
+      if (data && data.works) {
+        console.log("WORKS PAGES")
+        const component = path.resolve("./src/templates/work.jsx")
+        data.works.nodes.map(({ id }) => {
+          const path = `/works/${id}`
+          console.log(`- ${path}`)
           createPage({
-            path: `/${slug}`,
+            path,
             component,
-            context: { slug },
+            context: { id },
           })
         })
       }

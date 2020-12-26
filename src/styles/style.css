@@ -16,10 +16,26 @@ body {
   .container {
     @apply .px-6;
   }
+
+  .my-masonry-grid_column:first-of-type {
+    margin-right: 1rem;
+  }
+
+  .my-masonry-grid_column:last-of-type {
+    margin-left: 0;
+  }
 }
 
 @screen lg {
   .container {
     @apply .px-8;
+  }
+
+  .my-masonry-grid_column:first-of-type {
+    margin-right: 1rem;
+  }
+
+  .my-masonry-grid_column:last-of-type {
+    margin-left: 1rem;
   }
 }

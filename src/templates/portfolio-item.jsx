@@ -74,34 +74,34 @@ export default props => {
   )
 }
 
-export const query = graphql`
-  query PortfolioItemQUery($slug: String!) {
-    item: contentfulPortfolio(slug: { eq: $slug }) {
-      description {
-        description
-      }
-      gallery {
-        id
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 960, quality: 85) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-        title
-      }
-      name
-      related {
-        ...PortfolioCard
-      }
-      summary
-      thumbnail {
-        localFile {
-          publicURL
-        }
-      }
-      url
-    }
-  }
-`
+// export const query = graphql`
+//   query PortfolioItemQUery($slug: String!) {
+//     item: contentfulPortfolio(slug: { eq: $slug }) {
+//       description {
+//         description
+//       }
+//       gallery {
+//         id
+//         localFile {
+//           childImageSharp {
+//             fluid(maxWidth: 960, quality: 85) {
+//               ...GatsbyImageSharpFluid_withWebp
+//             }
+//           }
+//         }
+//         title
+//       }
+//       name
+//       related {
+//         ...PortfolioCard
+//       }
+//       summary
+//       thumbnail {
+//         localFile {
+//           publicURL
+//         }
+//       }
+//       url
+//     }
+//   }
+// `

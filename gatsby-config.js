@@ -11,8 +11,10 @@ if (!CONTENTFUL_SPACE_ID || !CONTENTFUL_ACCESS_TOKEN) {
 module.exports = {
   siteMetadata: {
     menu: [
-      { name: "Home", to: "/" },
       { name: "About", to: "/about" },
+      { name: "Installations", to: "/installations" },
+      { name: "News & Press", to: "/news" },
+      { name: "Contact", to: "/contact" },
     ],
     links: {
       facebook: "https://www.facebook.com/",
@@ -21,8 +23,8 @@ module.exports = {
       twitter: "https://twitter.com/",
     },
     locale: "en",
-    title: `John Doe`,
-    description: `Photography portfolio of John Doe`,
+    title: `Zhivago Duncan`,
+    description: `Portfolio of Zhivago Duncan`,
     author: `@johndoe`,
   },
   plugins: [
@@ -46,16 +48,10 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: "gatsby-plugin-mailchimp",
-      options: {
-        endpoint: process.env.MAILCHIMP_ENDPOINT,
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `John Doe`,
-        short_name: `johndoe`,
+        name: `Zhivago Duncan`,
+        short_name: `zhivagoduncan`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#3182ce`,
